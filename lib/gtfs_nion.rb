@@ -11,4 +11,13 @@ module GtfsNion
   def self.load_file
     GtfsNion::Feed::Loader.call
   end
+
+  def self.unpack_file
+    GtfsNion::Feed::Unpacker.call
+  end
+
+  def self.load_and_unpack
+    load_file
+    unpack_file
+  end
 end

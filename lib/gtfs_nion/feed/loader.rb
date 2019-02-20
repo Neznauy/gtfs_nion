@@ -6,17 +6,17 @@ module GtfsNion
   module Feed
     class Loader
       def self.call
-        FileUtils.mkdir_p(path) unless File.directory?(path)
+        FileUtils.mkdir_p(GtfsNion::Feed.gtfs_feed_folder_path) unless directory_exist?
 
-        File.open(path.join('gtfs_feed.zip'), "wb") do |file|
+        File.open(GtfsNion::Feed.gtfs_feed_file_path, "wb") do |file|
           file.write open(source).read
         end
       end
 
       private
 
-      def self.path
-        Pathname.new(GtfsNion.config.file_path).join('gtfs_nion')
+      def self.directory_exist?
+        File.directory?(GtfsNion::Feed.gtfs_feed_folder_path)
       end
 
       def self.source
