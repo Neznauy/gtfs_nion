@@ -72,4 +72,42 @@ RSpec.describe GtfsNion do
 
     it_behaves_like 'unpack feed'
   end
+
+  describe '#parse' do
+    context 'when invalid model' do
+      let(:model) { :invalid }
+
+      before { GtfsNion.config.file_path = File.expand_path(File.dirname(__FILE__) + '/../fixtures/files') }
+
+      it { expect{GtfsNion.parse(model)}.to raise_error(ArgumentError) }
+    end
+
+    context 'when agency model' do
+      let(:model) { :agency }
+
+      context 'when file exists' do
+        let(:object_array) { GtfsNion.parse(model) }
+        
+        before { GtfsNion.config.file_path = File.expand_path(File.dirname(__FILE__) + '/../fixtures/files') }
+
+        it do
+          expect(object_array).to be_a(Array)
+          expect(object_array.count).to eq 1
+          expect(object_array.first).to have_attributes(
+            agency_id: "orgp",
+            agency_name: "orgp",
+            agency_url: "http://orgp.spb.ru/",
+            agency_phone: "+7-812-573-9531",
+            agency_timezone: "Europe/Moscow"
+          )
+        end
+      end
+
+      context 'when no file' do
+        before { GtfsNion.config.file_path = File.expand_path(File.dirname(__FILE__) + '/../fixtures/files/invalid') }
+
+        it { expect{GtfsNion.parse(model)}.to raise_error(ArgumentError) }
+      end
+    end
+  end
 end

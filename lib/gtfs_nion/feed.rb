@@ -1,4 +1,5 @@
 require 'gtfs_nion/feed/loader'
+require 'gtfs_nion/feed/parser'
 require 'gtfs_nion/feed/unpacker'
 require 'pathname'
 
