@@ -14,6 +14,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'dry-configurable', '~> 0.8.1'
+  spec.add_dependency 'dry-validation'
+  spec.add_dependency 'i18n'
   spec.add_dependency 'rubyzip', '~> 1.1'
 
   spec.add_development_dependency 'bundler'

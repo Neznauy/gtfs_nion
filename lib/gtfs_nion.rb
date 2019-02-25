@@ -1,7 +1,10 @@
 require 'dry-configurable'
+require 'i18n'
+
 require 'gtfs_nion/gtfs_entity_base'
 require 'gtfs_nion/agency'
 require 'gtfs_nion/feed'
+require 'gtfs_nion/validations'
 require 'gtfs_nion/version'
 
 module GtfsNion    
@@ -33,5 +36,8 @@ module GtfsNion
     raise ArgumentError.new("Unable to find gtfs #{model} file.") unless File.exist?(file)
 
     GtfsNion::Feed::Parser.new(file).call
+  end
+
+  class InvalidGtfsError < StandardError
   end
 end
