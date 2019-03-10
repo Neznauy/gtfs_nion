@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.5.3
+  - 2.6.1
+before_install:
+  - gem update --system
+  - gem install bundler
+install:
+  - bundle install --jobs 3
+before_script: true
+script:
+  - bundle exec rspec
