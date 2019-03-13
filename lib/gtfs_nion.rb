@@ -10,6 +10,9 @@ require 'gtfs_nion/version'
 module GtfsNion    
   extend ::Dry::Configurable
 
+  class InvalidGtfsError < StandardError
+  end
+
   MODELS = [:agency, :stop, :routes, :trips, :stop_times, :calendar, :calendar_dates, :fare_attributes, 
             :fare_rules, :shapes, :frequencies, :transfers, :feed_info].freeze
 
@@ -18,10 +21,6 @@ module GtfsNion
 
   def self.load_file
     GtfsNion::Feed::Loader.call
-  end
-
-  def self.unpack_file
-    GtfsNion::Feed::Unpacker.call
   end
 
   def self.load_and_unpack
@@ -38,6 +37,7 @@ module GtfsNion
     GtfsNion::Feed::Parser.new(file).call
   end
 
-  class InvalidGtfsError < StandardError
+  def self.unpack_file
+    GtfsNion::Feed::Unpacker.call
   end
 end

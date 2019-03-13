@@ -25,12 +25,12 @@ module GtfsNion
 
       attr_reader :file
 
-      def model
-        @model ||= GtfsNion.const_get(File.basename(file, ".txt").capitalize)
-      end
-
       def attrs
         @attrs ||= File.open(file) {|f| f.readline}.parse_csv.map { |col| col.to_sym }
+      end
+
+      def model
+        @model ||= GtfsNion.const_get(File.basename(file, ".txt").capitalize)
       end
 
       def validator(entity)
