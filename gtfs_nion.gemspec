@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'dry-validation'
   spec.add_dependency 'i18n'
   spec.add_dependency 'rubyzip', '~> 1.1'
+  spec.add_dependency 'coveralls'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'

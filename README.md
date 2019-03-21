@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/Neznauy/gtfs_nion/badge.svg?branch=master)](https://coveralls.io/github/Neznauy/gtfs_nion?branch=master)
